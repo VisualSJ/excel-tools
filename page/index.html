@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Excel Tools</title>
+    <link href="./index.css" rel="stylesheet"/>
+</head>
+<body>
+
+    <div class="slider">
+        <div class="item">
+            <div class="title">菜单</div>
+            <ul>
+                <li
+                        v-for="title in menus"
+                        v-bind:class="menus[index]===title?'active':''"
+                        v-on:click="_onClickMenu"
+                >{{title}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="content">
+        <config-page v-if="index===0"></config-page>
+        <find-page v-if="index===1"
+                   v-bind:index.sync="index"
+                   v-bind:file.sync="file"
+                   v-bind:table.sync="table"
+                   v-bind:line.sync="line"
+                   v-bind:filter.sync="filter"
+        ></find-page>
+        <preview-page v-if="index===2"
+                      v-bind:file.sync="file"
+                      v-bind:table.sync="table"
+                      v-bind:line.sync="line"
+        ></preview-page>
+        <log-page v-if="index===3"></log-page>
+    </div>
+
+</body>
+</html>
+<script src="./index.js"></script>
